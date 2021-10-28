@@ -1,0 +1,13 @@
+.container {
+    background-color: lightblue;
+    display: grid;
+}
+
+.gridCell {
+    background-color: lightcoral;
+    transition: background-color .5s;
+}
+
+.gridCell:hover {
+    background-color: lightgray;
+}
