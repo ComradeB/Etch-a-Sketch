@@ -5,6 +5,15 @@
     height: 360px;
 }
 
-.fill-black {
-    background-color: black;
+.top {
+    display: grid;
+    place-items: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 1em;
 }
