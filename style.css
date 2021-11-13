@@ -1,13 +1,10 @@
-.container {
-    background-color: lightblue;
+.grid-container {
     display: grid;
+    border: 1px solid black;
+    width: 360px;
+    height: 360px;
 }
 
-.gridCell {
-    background-color: lightcoral;
-    transition: background-color .5s;
-}
-
-.gridCell:hover {
-    background-color: lightgray;
+.fill-black {
+    background-color: black;
 }

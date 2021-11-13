@@ -1,29 +1,47 @@
-const container = document.querySelector('.container');
-const header = document.querySelector('.header');
+const DEFAULT_VALUE = 16
+const gridContainer = document.querySelector('.grid-container')
+const resetButton = document.querySelector('.reset')
+const rainbowButton = document.querySelector('.rainbow-mode')
 
-const newButton = document.createElement('button');
-newButton.textContent='Reset';
-newButton.addEventListener('click', gridSize => {
-        do {
-            gridSize= +(prompt('Enter grid side length (between 10 and 100)', 100));
-            } while (gridSize < 10 || gridSize > 100);
+
+// create default grid
+// mouseover along grid
+
+// enable/disable rainbow mode
+
+// reset grid: clear. prompt side length, recreate grid
+
+function createDefaultGrid(sideLength) {
+    
+    for (let i = 0; i < sideLength**2; i++) {
+        const gridItem = document.createElement('div')
+        gridItem.addEventListener('mouseover', () => {
+            gridItem.classList.add('fill-black')
+        });
+        rainbowButton.addEventListener('click', () => {
+            gridItem.addEventListener('mouseover', () => {
+                gridItem.style.backgroundColor = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
+            });
             
-            container.replaceChildren();
-            generateGrid(gridSize);
-});
-
-header.appendChild(newButton);
-
-
-function generateGrid(x) {
-
-    let gridCell='';
-
-    for (let i=0;i<x**2;++i) {
-        gridCell+="<div class='gridCell'>hello</div>";
+        })
+        gridContainer.appendChild(gridItem)
+        gridContainer.style.gridTemplate = `repeat(${sideLength}, 1fr) / repeat(${sideLength}, 1fr)`
     }
-    container.setAttribute(`style`, `grid-template: repeat(${x}, 1fr) / repeat(${x}, 1fr)`);
-    container.innerHTML=gridCell;
+    
 }
 
-generateGrid(16);
+function resetGrid() {
+    gridContainer.replaceChildren()
+    let newSideLength
+    do newSideLength = prompt('Enter new side length', 10) 
+    while (newSideLength < 0 || newSideLength > 50)
+    return newSideLength
+}
+
+createDefaultGrid(16)
+
+resetButton.addEventListener('click', () => {   
+    createDefaultGrid(resetGrid())
+})
+
+
